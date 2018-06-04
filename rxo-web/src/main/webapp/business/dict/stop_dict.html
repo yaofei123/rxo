@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>H+ 后台主题UI框架 - 主页示例</title>
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+
+</head>
+
+<body class="gray-bg">
+<div class="row  border-bottom white-bg dashboard-header">
+    <div class="col-sm-12">
+        <div class="example-wrap">
+            <h4 class="example-title"></h4>
+            <div class="example" id="div-keywordTable-container">
+                <div class="btn-group hidden-xs" id="keywordToolbar" role="group">
+                    <button type="button" id="keyword_btn_create" class="btn btn-outline btn-default">
+                        <i class="glyphicon glyphicon-plus" aria-hidden="true">新增</i>
+                    </button>
+                    <button type="button" id="keyword_btn_update" class="btn btn-outline btn-default">
+                        <i class="glyphicon glyphicon-pencil" aria-hidden="true">修改</i>
+                    </button>
+                    <button type="button" id="keyword_btn_delete" class="btn btn-outline btn-default">
+                        <i class="glyphicon glyphicon-remove" aria-hidden="true">删除</i>
+                    </button>
+                </div>
+                <table id="stopword-table" data-mobile-responsive="true">
+                    <thead>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!-- End Example Toolbar -->
+    </div>
+</div>
+
+
+<!-- 创建 -->
+<div class="modal inmodal" id="modal_form_create" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">关闭</span>
+                </button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>关键词：</label> <input id="create_dict" type="text" placeholder="" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="create_keyword_save">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 更新 -->
+<div class="modal inmodal" id="modal_form_update" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">关闭</span>
+                </button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">修改</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="display: none">
+                    <label>id：</label> <input id="update_id" type="text" placeholder="" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>关键词：</label> <input id="update_dict" type="text" placeholder="" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>创建时间：</label> <input id="update_createtime" type="text" placeholder="" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="update_keyword_save">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/plugins/layer/layer.min.js"></script>
+
+<!-- Bootstrap table -->
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<!-- 自定义js -->
+<script src="/js/content.js"></script>
+<script src="/js/plugins/fullcalendar/moment.min.js"></script>
+<script src="/js/plugins/toastr/toastr.min.js"></script>
+<!-- Sweet alert -->
+<script src="/js/plugins/sweetalert/sweetalert.min.js"></script>
+
+<!-- 欢迎信息 -->
+<!--<script src="/js/welcome.js"></script>-->
+
+
+<script src="/js/business/dict/stopword_dict.js"></script>
+</body>
+
+</html>

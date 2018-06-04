@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 树形视图</title>
+
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link href="/css/plugins/steps/jquery.steps.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+    <div class="row  border-bottom white-bg dashboard-header">
+        <div class="col-sm-12">
+            <div class="example-wrap">
+                <h4 class="example-title"></h4>
+                <div class="example">
+                    <div class="btn-group hidden-xs" id="dictToolbar" role="group">
+                        <button type="button" id="dict_btn_create" class="btn btn-outline btn-default">
+                            <i class="glyphicon glyphicon-plus" aria-hidden="true">新增</i>
+                        </button>
+                        <button type="button" id="dict_btn_update" class="btn btn-outline btn-default">
+                            <i class="glyphicon glyphicon-pencil" aria-hidden="true">修改</i>
+                        </button>
+                        <button type="button" id="dict_btn_delete" class="btn btn-outline btn-default">
+                            <i class="glyphicon glyphicon-remove" aria-hidden="true">删除</i>
+                        </button>
+                    </div>
+                    <table id="dict_table" data-mobile-responsive="true">
+                        <thead>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!-- End Example Toolbar -->
+        </div>
+    </div>
+</div>
+
+
+<!-- 数据字典modal -->
+<div class="modal inmodal" id="modal_form_dict" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <i class="fa fa-folder-open-o modal-icon"></i>
+                <h4 class="modal-title">数据字典向导</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <form id="form" action="form_wizard.html#" class="wizard-big">
+                                <h1>业务类型</h1>
+                                <fieldset>
+                                    <div class="step-content">
+                                        <div class="input-group">
+                                            <label id="businessId" style="display: none"></label>
+                                            <input type="text" class="form-control required" id="businessName"
+                                                   name="businessName">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default dropdown-toggle" type="button"
+                                                        id="businessSelect" data-toggle="dropdown"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="true">
+                                                    选择<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu pull-right"
+                                                    aria-labelledby="businessSelect"
+                                                    id="dictionaryBusinessItem">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <span class="help-block m-b-none" style="display: none"
+                                              id="businessSelectWarning"><i class="fa fa-info-circle"></i> 暂无业务类型，请手动添加</span>
+                                    </div>
+                                </fieldset>
+                                <h1>字典类型</h1>
+
+                                <fieldset>
+                                    <div class="step-content">
+                                        <div class="input-group">
+                                            <label id="typeId" style="display: none"></label>
+                                            <input type="text" class="form-control required" id="dictTypeName"
+                                                   name="dictTypeName">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default dropdown-toggle" type="button"
+                                                        id="dictTypeSelect" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="true">
+                                                    选择<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu pull-right" aria-labelledby="dictTypeSelect"
+                                                    id="dictTypeItem">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <span class="help-block m-b-none" style="display: none"
+                                              id="typeSelectWarning">
+                                            <i class="fa fa-info-circle"></i> 暂无字典类型，请手动添加</span>
+                                    </div>
+                                </fieldset>
+
+                                <h1>字典数据</h1>
+
+                                <fieldset>
+                                    <div class="step-content">
+                                        <div class="btn-group hidden-xs" id="dictItemToolbar" role="group">
+                                            <button type="button" id="dict_item_btn_create" class="btn btn-outline btn-default">
+                                                <i class="glyphicon glyphicon-plus" aria-hidden="true">新增</i>
+                                            </button>
+                                        </div>
+                                        <table id="dictionary_item_table" data-mobile-responsive="true">
+                                            <thead>
+                                            <tr>
+                                                <th data-field="code">编码</th>
+                                                <th data-field="name">属性</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- Bootstrap table -->
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<!-- Sweet alert -->
+<script src="/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/js/plugins/fullcalendar/moment.min.js"></script>
+<script src="/js/plugins/toastr/toastr.min.js"></script>
+
+<!-- Steps -->
+<script src="/js/plugins/staps/jquery.steps.min.js"></script>
+<!-- Jquery Validate -->
+<script src="/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/js/plugins/validate/messages_zh.min.js"></script>
+
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+
+<script src="/js/admin/dict.js"></script>
+
+</body>
+
+</html>
