@@ -6,15 +6,15 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class CrmWebApplication extends SpringBootServletInitializer {
+public class RxoWebApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        application.sources(CrmWebApplication.class);
+        application.sources(RxoWebApplication.class);
         return application;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(CrmWebApplication.class, args);
+        SpringApplication.run(RxoWebApplication.class, args);
     }
 }
