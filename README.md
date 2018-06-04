@@ -21,20 +21,20 @@
 ### 1.2.2 zuul 链路追踪
     端口:40020
 
-##1.3 Apollo 
+## 1.3 Apollo 
     端口:403xx
-###1.3.1 apollo-portal
+### 1.3.1 apollo-portal
     端口:40300
     超级管理员账号/密码：apollo/admin
 ---
 	pro-microserver-184.ehaoyao.com:40100/signin
-###1.3.2 apollo-config
+### 1.3.2 apollo-config
     端口:40310
     
-###1.3.3 apollo-admin
+### 1.3.3 apollo-admin
     端口:40320
 	
-##1.4 RabbitMQ
+## 1.4 RabbitMQ
     端口:404xx
 ---    
     管理员 账号/密码：admin/admin
@@ -45,7 +45,7 @@
 ---	
 	集群 SLB 地址 
     http://10.0.20.153:15672/
-##1.5 xxl-job-admin 
+## 1.5 xxl-job-admin 
     端口:405xx
 ---
     端口:40500
@@ -55,9 +55,9 @@
     http://10.0.21.185:40007/xxl-job-admin-1.9.0/
     http://10.0.21.186:40007/xxl-job-admin-1.9.0/
 
-#2 业务服务规范
+# 2 业务服务规范
 
-##2.1 项目名称
+## 2.1 项目名称
     rx-outflow : 处方外流 301xx
 ---
     项目基础端口：30100、30110、30120、...
@@ -65,10 +65,10 @@
     10 ： esi 对外服务接口
     ...
     
-##2.2 项目模块
+## 2.2 项目模块
     基础包：com.xxx.rxo
     
-###2.2.1 基础工具服务模块
+### 2.2.1 基础工具服务模块
     为各业务模块提供基础, 公共工具, mybaits、redis、spring等封装。被引用
     rxo-platform
 ---
@@ -77,14 +77,14 @@
     com.xxx.rxo.springmvc spring相关
     com.xxx.rxo.util 工具类相关
     
-###2.2.2 领域对象模块
+### 2.2.2 领域对象模块
     为各业务模块提供领域对象,被引用
     rxo-domain
 ---
     com.xxx.rxo.entity 数据库实体对象
     com.xxx.rxo.vo 前端展示对象
     
-###2.2.3 管理员后台模块
+### 2.2.3 管理员后台模块
     端口 : 30100（内部孵化3010x）
     rxo-web
 ---
@@ -105,6 +105,6 @@
     com.xxx.rxo.business.dao
     com.xxx.rxo.business.mapper
     
-###2.2.4 对外服务接口模块
+### 2.2.4 对外服务接口模块
     端口 : 30110（内部孵化3011x）
     rxo-esi
