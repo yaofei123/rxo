@@ -3,17 +3,17 @@
 # 1 微服务基础服务服务规范
 
 ## 1.1 服务器
-	10.0.21.184 pro-microserver-184.ehaoyao.com
-	10.0.21.185 pro-microserver-185.ehaoyao.com
-	10.0.21.186 pro-microserver-186.ehaoyao.com
+	x.x.x.xxx pro-microserver-xxx.rxo.com
+	x.x.x.xxx pro-microserver-xxx.rxo.com
+	x.x.x.xxx pro-microserver-xxx.rxo.com
 ## 1.2 Spring cloud 
     端口:400xx ~ 402xx
 ### 1.2.1 Eureka
     端口40000
 ---
-	pro-microserver-184.ehaoyao.com:40000/
-	pro-microserver-185.ehaoyao.com:40000/
-	pro-microserver-186.ehaoyao.com:40000/
+	pro-microserver-xxx.rxo.com:40000
+	pro-microserver-xxx.rxo.com:40000
+	pro-microserver-xxx.rxo.com:40000
 	
 ### 1.2.2 zipkin 链路追踪
     端口:40010
@@ -27,7 +27,7 @@
     端口:40300
     超级管理员账号/密码：apollo/admin
 ---
-	pro-microserver-184.ehaoyao.com:40100/signin
+	pro-microserver-xxx.rxo.com:40300
 ### 1.3.2 apollo-config
     端口:40310
     
@@ -39,21 +39,19 @@
 ---    
     管理员 账号/密码：admin/admin
 ---
-	http://10.0.21.184:15672/   
-	http://10.0.21.185:15672/
-	http://10.0.21.186:15672/
+
 ---	
 	集群 SLB 地址 
-    http://10.0.20.153:15672/
+	
 ## 1.5 xxl-job-admin 
     端口:405xx
 ---
     端口:40500
     管理员 账号/密码：admin / admin@xxljob!
 ---    
-    http://10.0.21.184:40007/xxl-job-admin-1.9.0/
-    http://10.0.21.185:40007/xxl-job-admin-1.9.0/
-    http://10.0.21.186:40007/xxl-job-admin-1.9.0/
+    pro-microserver-xxx.rxo.com:40500
+    pro-microserver-xxx.rxo.com:40500
+    pro-microserver-xxx.rxo.com:40500
 
 # 2 业务服务规范
 
