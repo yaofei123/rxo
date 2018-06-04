@@ -10,7 +10,6 @@ import com.refactoring.rxo.admin.account.service.AccountService;
 import com.refactoring.rxo.admin.accountRoleMapping.service.AccountRoleMappingService;
 import com.refactoring.rxo.admin.resource.service.ResourceService;
 import com.refactoring.rxo.admin.roleResourceMapping.service.RoleResourceMappingService;
-import com.refactoring.entity.account.*;
 import com.refactoring.rxo.entity.account.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
