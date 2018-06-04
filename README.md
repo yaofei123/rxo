@@ -1,22 +1,24 @@
-#1 微服务基础服务服务规范
+服务规范
+=====
+# 1 微服务基础服务服务规范
 
-##1.1 服务器
+## 1.1 服务器
 	10.0.21.184 pro-microserver-184.ehaoyao.com
 	10.0.21.185 pro-microserver-185.ehaoyao.com
 	10.0.21.186 pro-microserver-186.ehaoyao.com
-##1.2 Spring cloud 
+## 1.2 Spring cloud 
     端口:400xx ~ 402xx
-###1.2.1 Eureka
+### 1.2.1 Eureka
     端口40000
 ---
 	pro-microserver-184.ehaoyao.com:40000/
 	pro-microserver-185.ehaoyao.com:40000/
 	pro-microserver-186.ehaoyao.com:40000/
 	
-###1.2.2 zipkin 链路追踪
+### 1.2.2 zipkin 链路追踪
     端口:40010
     	
-###1.2.2 zuul 链路追踪
+### 1.2.2 zuul 链路追踪
     端口:40020
 
 ##1.3 Apollo 
