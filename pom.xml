@@ -35,6 +35,7 @@
         <module>rxo-domain</module>
         <module>rxo-esi</module>
         <module>rxo-web</module>
+        <module>rxo-web-ui</module>
     </modules>
 
 
