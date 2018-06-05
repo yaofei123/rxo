@@ -1,27 +1,26 @@
 package com.refactoring.rxo.admin.security.controller;
 
 
-import com.refactoring.rxo.admin.security.domain.SecurityUser;
 import com.refactoring.rxo.admin.account.service.AccountService;
+import com.refactoring.rxo.admin.security.domain.SecurityUser;
 import com.refactoring.rxo.entity.account.Account;
 import com.refactoring.rxo.entity.account.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
  * 管理账号
  */
 @RestController
-@RequestMapping(value = "/security/login")
+@RequestMapping(value = "/security")
 public class LoginController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
@@ -55,15 +54,24 @@ public class LoginController {
         return accountService.findSystemAccountResourceTree(username);
     }
 
-    @GetMapping("/logout")
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-
-        return "redirect:/login.html?logout";
+    @GetMapping("/current")
+    public SecurityUser currentUser() {
+        return getLoginUser();
     }
 
+    private static SecurityUser getLoginUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            if (authentication instanceof AnonymousAuthenticationToken) {
+                return null;
+            }
+
+            if (authentication instanceof UsernamePasswordAuthenticationToken) {
+                return (SecurityUser) authentication.getPrincipal();
+            }
+        }
+
+        return null;
+    }
 
 }

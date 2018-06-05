@@ -50,7 +50,7 @@
                             <li><a class="J_menuItem" href="mailbox.html">信箱</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="login.html">安全退出</a>
+                            <li><a href="/login.html">安全退出</a>
                             </li>
                         </ul>
                     </div>
@@ -100,7 +100,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a onclick="logout()" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v1.html" frameborder="0"
@@ -127,98 +127,67 @@
 <!-- 第三方插件 -->
 <script src="/js/plugins/pace/pace.min.js"></script>
 
+
+<script type="text/javascript" src="/js/common.js"></script>
+
 <script type="text/javascript">
-
-    jQuery(function ($) {
-
-        function getNodeContent(resource) {
-            if (resource.type == 'page') {
-                return '<a class="J_menuItem" href="' + resource.url + '">' + resource.name + '</a>';
-            }
-            if (resource.type == 'menu') {
-                return '<a href="#">'
-                    + '<i class="fa fa-table"></i>'
-                    + '<span class="nav-label"> ' + resource.name + ' </span>'
-                    + '<span class="fa arrow"></span>'
-                    + '</a>';
-            }
-        }
-
-        function buildMenu(resource, level) {
-
-            var contentHtml = '<li class="">'
-                + getNodeContent(resource);
-            if (resource.children) {
-                contentHtml += '<ul class="nav nav-second-level">';
-                for (var i in resource.children) {
-
-                    contentHtml += buildMenu(resource.children[i]);
-
-                }
-                contentHtml += '</ul>';
-            }
-
-            contentHtml += '</li>';
-
-            return contentHtml;
-        }
-
+    initMenu();
+    function initMenu() {
         $.ajax({
             type: "GET",
-            url: "security/login/getResource/asdfsadfasdf",
+            url: "security/getResource/asdfsadfasdf",
             async: false,//设置为同步
-            cache: false,	//禁用缓存
-            beforeSend: function (request) {
-                request.setRequestHeader("Content-Type", "application/json");
-            },
             success: function (result) {
-
                 for (var i in result) {
-
                     var contentHtml = buildMenu(result[i], 0);
                     $('#side-menu').append(contentHtml);
                 }
-//                reloadSideMenuJs();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                var errorResponse = $.parseJSON(jqXHR.responseText);
-//                console.log(errorResponse);
-                $.dialog.alert('请求资源失败:' + errorResponse.message);
-                //location.href = "login.html";
-
-
-                //未登陆
-                if (jqXHR.status === 401) {
-                    $.dialog.confirm("登录失效, 请重新登陆后进行操作", function () {
-                        location.href = "/resources/static/login.html";
-                    });
-                }
             }
         });
-    });
-
-    function reloadSideMenuJs() {
-
-        $('#side-menu').metisMenu();
-        $('#side-menu>li').click(function () {
-            if ($('body').hasClass('mini-navbar')) {
-                NavToggle();
-            }
-        });
-        $('#side-menu>li li a').click(function () {
-            if ($(window).width() < 769) {
-                NavToggle();
-            }
-        });
-
-        $(".J_menuItem").each(function (index) {
-            if (!$(this).attr('data-index')) {
-                $(this).attr('data-index', index);
-            }
-        });
-
-        $('.J_menuItem').on('click', menuItem);
     }
+    function getNodeContent(resource) {
+        if (resource.type == 'page') {
+            return '<a class="J_menuItem" href="' + resource.url + '">' + resource.name + '</a>';
+        }
+        if (resource.type == 'menu') {
+            return '<a href="#">'
+                + '<i class="fa fa-table"></i>'
+                + '<span class="nav-label"> ' + resource.name + ' </span>'
+                + '<span class="fa arrow"></span>'
+                + '</a>';
+        }
+    }
+
+    function buildMenu(resource, level) {
+
+        var contentHtml = '<li class="">'
+            + getNodeContent(resource);
+        if (resource.children) {
+            contentHtml += '<ul class="nav nav-second-level">';
+            for (var i in resource.children) {
+
+                contentHtml += buildMenu(resource.children[i]);
+
+            }
+            contentHtml += '</ul>';
+        }
+
+        contentHtml += '</li>';
+
+        return contentHtml;
+    }
+
+    function logout(){
+        $.ajax({
+            type : 'get',
+            url : '/logout',
+            success : function(data) {
+                localStorage.removeItem("token");
+                location.href='/login.html';
+            }
+        });
+    }
+
 </script>
 
 

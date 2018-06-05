@@ -18,65 +18,99 @@
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
+    <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
-    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+    <script>if (window.top !== window.self) {
+        window.top.location = window.location;
+    }</script>
 </head>
 
 <body class="gray-bg">
 
-    <div class="middle-box text-center loginscreen  animated fadeInDown">
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
         <div>
-            <div>
 
-                <h1 class="logo-name">H+</h1>
+            <h1 class="logo-name">H+</h1>
 
-            </div>
-            <h3>欢迎使用 搜索服务运营中心</h3>
-
-            <form class="m-t" role="form" action="/login"  method="POST">
-                <div class="form-group">
-                    <input id="account_name" name="username" type="text" class="form-control" placeholder="用户名" required="">
-                </div>
-                <div class="form-group">
-                    <input id="account_password" name="password" type="password" class="form-control" placeholder="密码" required="">
-                </div>
-                <button id="login_submit_btn" type="submit" class="btn btn-primary block full-width m-b">登 录</button>
-
-            </form>
         </div>
+        <h3>欢迎使用 搜索服务运营中心</h3>
+
+        <form id="login-form" method="post" onsubmit="return false;">
+            <div class="form-group">
+                <input id="username" name="username" type="text" class="form-control" placeholder="用户名" required="">
+            </div>
+            <div class="form-group">
+                <input id="password" name="password" type="password" class="form-control" placeholder="密码"
+                       required="">
+            </div>
+            <button id="login_submit_btn" type="submit" class="btn btn-primary block full-width m-b"
+                    onclick="login(this)">登 录
+            </button>
+
+        </form>
     </div>
+</div>
 
-    <!-- 全局js -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+<!-- 全局js -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-//        $('#login_submit_btn').click(function(){
-//
-//            var name = $('#account_name').val();
-//            var password = $('#account_password').val();
-//            console.log("username="+name+"&password="+password);
-//            $.ajax({
-//                type: "POST",
-//                url: "/login",
-//                cache : false,	//禁用缓存
-//                data: "username="+name+"&password="+password,
-//                dataType: "json",
-//                beforeSend: function(request) {
-//                    request.setRequestHeader("Content-Type", "application/json");
-//                },
-//                success: function(result) {
-//                    location.href = "/index.html";
-//                },
-//                error: function(XMLHttpRequest, textStatus, errorThrown) {
-//                    console.log('失败')
-//
-//                }
-//            });
-//        });
-    </script>
+<script type="text/javascript">
+    if (top != self) {
+        parent.location.href = '/login.html';
+    }
 
+    var token = localStorage.getItem("token");
+    if (token != null && token.trim().length != 0) {
+        $.ajax({
+            type: 'get',
+            url: '/security/current?token=' + token,
+            success: function (data) {
+                location.href = '/index.html';
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var msg = xhr.responseText;
+                var response = JSON.parse(msg);
+                var code = response.code;
+                var message = response.message;
+                if (code === 401) {
+                    localStorage.removeItem("token");
+                }
+            }
+        });
+    }
+
+    function login(obj) {
+        $(obj).attr("disabled", true);
+
+        var username = $.trim($('#username').val());
+        var password = $.trim($('#password').val());
+        if (username == "" || password == "") {
+            $("#info").html('用户名或者密码不能为空');
+            $(obj).attr("disabled", false);
+        } else {
+            $.ajax({
+                type: 'post',
+                url: '/login',
+                data: $("#login-form").serialize(),
+                success: function (data) {
+                    console.log(data);
+                    localStorage.setItem("token", data.token);
+                    location.href = '/index.html';
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log(data);
+                    var msg = xhr.responseText;
+                    var response = JSON.parse(msg);
+                    $("#info").html(response.message);
+                    $(obj).attr("disabled", false);
+                }
+            });
+
+        }
+    }
+</script>
 
 
 </body>

@@ -17,6 +17,12 @@ public class SecurityUser extends Account implements UserDetails {
 
     private Account account;
 
+    private String token;
+    /** 登陆时间戳（毫秒） */
+    private Long loginTime;
+    /** 过期时间戳 */
+    private Long expireTime;
+
     private List<Role> roleList = new ArrayList<>();
 
     public SecurityUser(Account account, List<Role> roleList) {
@@ -81,4 +87,27 @@ public class SecurityUser extends Account implements UserDetails {
         return true;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Long getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Long loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public Long getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Long expireTime) {
+        this.expireTime = expireTime;
+    }
 }
