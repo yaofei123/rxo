@@ -1,4 +1,4 @@
-package com.refactoring.rxo.redis.util;
+package com.refactoring.rxo.datasource.redis.util;
 
 /** 
 * @author 作者 owen E-mail: 624191343@qq.com

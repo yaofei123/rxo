@@ -2,7 +2,7 @@ package com.refactoring.rxo.admin.resource.dao;
 
 
 import com.refactoring.rxo.entity.account.Resource;
-import com.refactoring.rxo.mybatis.BaseDao;
+import com.refactoring.rxo.datasource.mybatis.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

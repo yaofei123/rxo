@@ -1,4 +1,4 @@
-package com.refactoring.rxo.mybatis;
+package com.refactoring.rxo.datasource.mybatis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.MapperFeature;

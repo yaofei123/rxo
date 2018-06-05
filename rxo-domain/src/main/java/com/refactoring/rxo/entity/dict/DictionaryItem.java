@@ -3,7 +3,7 @@ package com.refactoring.rxo.entity.dict;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldStrategy;
-import com.refactoring.rxo.mybatis.BaseEntity;
+import com.refactoring.rxo.datasource.mybatis.BaseEntity;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

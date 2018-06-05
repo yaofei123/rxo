@@ -1,4 +1,4 @@
-package com.refactoring.rxo.mybatis;
+package com.refactoring.rxo.datasource.mybatis;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 

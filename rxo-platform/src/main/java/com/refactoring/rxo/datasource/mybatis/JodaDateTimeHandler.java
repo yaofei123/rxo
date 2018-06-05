@@ -1,4 +1,4 @@
-package com.refactoring.rxo.mybatis;
+package com.refactoring.rxo.datasource.mybatis;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

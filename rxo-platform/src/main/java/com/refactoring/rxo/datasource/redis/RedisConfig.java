@@ -1,6 +1,6 @@
-package com.refactoring.rxo.redis;
+package com.refactoring.rxo.datasource.redis;
 
-import com.refactoring.rxo.redis.util.RedisObjectSerializer;
+import com.refactoring.rxo.datasource.redis.util.RedisObjectSerializer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

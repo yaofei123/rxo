@@ -1,7 +1,7 @@
 package com.refactoring.rxo.entity.account;
 
 
-import com.refactoring.rxo.mybatis.BaseEntity;
+import com.refactoring.rxo.datasource.mybatis.BaseEntity;
 
 import java.util.Date;
 
