@@ -94,7 +94,7 @@ public class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurer
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/*.html").permitAll()
+                .antMatchers("/", "/*.html","/api/**").permitAll()
                 //只有系统管理员才有权限操作/admin 接口下的业务
                 .antMatchers("/admin/**").hasRole("系统管理员")
                 .anyRequest().authenticated();

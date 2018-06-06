@@ -1,5 +1,6 @@
 package com.refactoring.rxo.springmvc;
 
+import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -64,4 +65,13 @@ public class RestApiExceptionHandler {
         LOGGER.error("", ex);
         return new ErrorResponse("100", "操作失败, 请确认输入参数或联系管理员");
     }
+
+    @ExceptionHandler(FeignException.class)
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+    @ResponseBody
+    public ErrorResponse handleFeignExceptionError(FeignException ex) {
+        LOGGER.error("", ex);
+        return new ErrorResponse("100", ex.getMessage());
+    }
+
 }

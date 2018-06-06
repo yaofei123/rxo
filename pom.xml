@@ -51,6 +51,12 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>io.jmnarloch</groupId>
+                <artifactId>feign-oauth2-spring-cloud-starter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
             <!-- db -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
